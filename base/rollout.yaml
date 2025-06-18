@@ -6,14 +6,14 @@ metadata:
     tier: front
   name: vote
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: vote
   strategy: 
     blueGreen:
       autoPromotionEnabled: true
-      autoPromotionSeconds: 30
+      autoPromotionSeconds: 60
       activeService: vote
       previewService: vote-preview
   template:
@@ -23,7 +23,7 @@ spec:
         tier: front
     spec:
       containers:
-      - image: schoolofdevops/vote:v1
+      - image: schoolofdevops/vote:v3
         name: vote
         imagePullPolicy: Always
         resources: 
